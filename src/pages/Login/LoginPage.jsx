@@ -165,7 +165,7 @@ export default function LoginPage() {
                 </div>
 
                 <div
-                  className="form-label input-label c-pointer text-start"
+                  className="form-label input-label c-pointer text-center"
                   onClick={() => setStep("login")}
                 >
                   <ArrowLeft size={16} /> Back to Login

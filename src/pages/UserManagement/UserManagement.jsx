@@ -172,6 +172,7 @@ const UserManagement = () => {
         field: "email",
         minWidth: 200,
         flex: 1,
+        cellStyle: { textTransform: "lowerCase"}
       },
       {
         headerName: "Phone Number",

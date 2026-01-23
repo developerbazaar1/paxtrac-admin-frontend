@@ -219,6 +219,12 @@ const Headers = ({ isSideBarOpen, setIsSideBarOpen }) => {
             </NavLink>
           </li>
           <li>
+            <NavLink className="app-menu__item" to="/content-management">
+              <Building2 size={20} />
+              <span className="app-menu__label">Content Management</span>
+            </NavLink>
+          </li>
+          <li>
             <NavLink className="app-menu__item" to="/voting-management">
               <Vote size={20} />
               <span className="app-menu__label">Voting Management</span>
@@ -233,12 +239,10 @@ const Headers = ({ isSideBarOpen, setIsSideBarOpen }) => {
           <li>
             <NavLink
               className="app-menu__item"
-              to="/notification-and-communication"
+              to="/announcements"
             >
               <Bell size={20} />
-              <span className="app-menu__label">
-                Notification & Communication
-              </span>
+              <span className="app-menu__label"> Announcements </span>
             </NavLink>
           </li>
           <li>

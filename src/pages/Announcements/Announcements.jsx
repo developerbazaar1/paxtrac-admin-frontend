@@ -71,7 +71,7 @@ const STATIC_NOTIFICATIONS = [
 
 /* ---------------- COMPONENT ---------------- */
 
-const NotificationCommunication = () => {
+const Announcements = () => {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [search, setSearch] = useState("");
@@ -81,6 +81,7 @@ const NotificationCommunication = () => {
   const [notiType, setNotiType] = useState("");
   const [priorityType, setPriorityType] = useState("");
   const [userGroup, setUserGroup] = useState("");
+  const [errors, setErrors] = useState({});
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedNotification, setSelectedNotification] = useState(null);
@@ -93,11 +94,22 @@ const NotificationCommunication = () => {
     );
   }, [search]);
 
+  const validate = () => {
+    const newErrors = {};
+
+    if (!title.trim()) newErrors.title = "Title is required";
+    if (!message.trim()) newErrors.message = "Message is required";
+    if (!userGroup) newErrors.userGroup = "Target audience  is required";
+    // if (!notiType) newErrors.notiType = "Notification type is required";
+    // if (!priorityType) newErrors.priorityType = "Priority is required";
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = () => {
-    if (!title || !message || !notiType || !priorityType || !userGroup) {
-      Swal.fire("Error", "All fields are required", "error");
-      return;
-    }
+    if (!validate()) return;
 
     Swal.fire({
       title: "Success!",
@@ -105,13 +117,13 @@ const NotificationCommunication = () => {
       icon: "success",
       timer: 2500,
       showConfirmButton: true,
+      confirmButtonColor: "#a99068",
     });
 
     setTitle("");
     setMessage("");
-    setNotiType("");
-    setPriorityType("");
     setUserGroup("");
+    setErrors({});
   };
 
   const handleDelete = (id) => {
@@ -180,16 +192,16 @@ const NotificationCommunication = () => {
         headerName: "Title",
         field: "title",
         flex: 1,
-        minWidth: 200,
+        minWidth: 250,
         cellRenderer: ReadMoreCell,
       },
-      { headerName: "Type", field: "type", flex: 1 },
+      // { headerName: "Type", field: "type", flex: 1 },
       {
         headerName: "Target Audience",
         field: "targetAudience",
         flex: 1,
       },
-      { headerName: "Priority", field: "priority", flex: 1 },
+      // { headerName: "Priority", field: "priority", flex: 1 },
       {
         headerName: "Status",
         field: "status",
@@ -230,9 +242,9 @@ const NotificationCommunication = () => {
   return (
     <main className="app-content body-bg">
       <section className="container">
-        <div className="title-heading mb-2">Notification & Communication</div>
+        <div className="title-heading mb-2">Announcements</div>
         <p className="title-sub-heading">
-          Send platform-wide or targeted notifications to keep users informed
+          Send updates that matter, to the people who need them.{" "}
         </p>
 
         <Breadcrumbs />
@@ -244,14 +256,20 @@ const NotificationCommunication = () => {
               <label className="form-label fw-semibold">Title *</label>
               <input
                 type="text"
-                className="form-control"
+                className={`form-control ${errors.title ? "is-invalid" : ""}`}
                 placeholder="Enter notification title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => {
+                  setTitle(e.target.value);
+                  setErrors((prev) => ({ ...prev, title: "" }));
+                }}
               />
+              {errors.title && (
+                <div className="text-danger">{errors.title}</div>
+              )}
             </div>
 
-            <div className="col-md-6 mb-3">
+            {/* <div className="col-md-6 mb-3">
               <label className="form-label fw-semibold">
                 Notification Type *
               </label>
@@ -271,27 +289,39 @@ const NotificationCommunication = () => {
                 value={priorityType}
                 onChange={setPriorityType}
               />
-            </div>
+            </div> */}
 
             <div className="col-md-6 mb-3">
-              <label className="form-label fw-semibold">User Group *</label>
+              <label className="form-label fw-semibold">Target Audience *</label>
               <CustomDropdown
                 options={userGroupOptions}
                 placeholder="Select target audience"
                 value={userGroup}
-                onChange={setUserGroup}
+                onChange={(val) => {
+                  setUserGroup(val);
+                  setErrors((prev) => ({ ...prev, userGroup: "" }));
+                }}
               />
+              {errors.userGroup && (
+                <small className="text-danger">{errors.userGroup}</small>
+              )}
             </div>
 
             <div className="col-md-12 mb-3">
               <label className="form-label fw-semibold">Message *</label>
               <textarea
-                className="form-control"
+                className={`form-control ${errors.message ? "text-danger" : ""}`}
                 rows={4}
                 placeholder="Type notification message here..."
                 value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                  setErrors((prev) => ({ ...prev, message: "" }));
+                }}
               />
+              {errors.message && (
+                <div className="text-danger">{errors.message}</div>
+              )}
             </div>
 
             <div className="col-md-12">
@@ -382,4 +412,4 @@ const NotificationCommunication = () => {
   );
 };
 
-export default NotificationCommunication;
+export default Announcements;

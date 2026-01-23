@@ -186,7 +186,7 @@ const Cms = () => {
                   domLayout="autoHeight"
                   getRowStyle={(params) => ({
                     backgroundColor:
-                      params.node.rowIndex % 2 !== 0 ? "#0061ff10" : "white",
+                      params.node.rowIndex % 2 !== 0 ? "#e7e0d52b" : "white",
                   })}
                 />
               </div>

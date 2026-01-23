@@ -12,7 +12,7 @@ import CMSView from "./pages/CmsManagement/CMSView";
 import AddCmsPage from "./pages/CmsManagement/AddCmsPage";
 import MonetizationManagement from "./pages/MonetizationManagement/MonetizationManagement";
 import Analytics from "./pages/Analytics/Analytics";
-import NotificationCommunication from "./pages/NotificationCommunication/NotificationCommunication";
+import NotificationCommunication from "./pages/Announcements/Announcements";
 import UnderDevelopment from "./pages/UnderDevelopment";
 import AddUser from "./pages/UserManagement/AddUser";
 import ViewUser from "./pages/UserManagement/ViewUser";
@@ -21,6 +21,13 @@ import Legal from "./pages/legal";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import PropertyManagement from "./pages/PropertyManagement/PropertyManagement";
 import ViewProperty from "./pages/PropertyManagement/ViewProperty";
+import ContentManagement from "./contentManagement/ContentManagement";
+import BlogView from "./ContentManagement/Blogs/BlogView";
+import VlogView from "./ContentManagement/Vlogs/VlogView";
+import FaqView from "./ContentManagement/Faqs/FaqView";
+import BlogAdd from "./ContentManagement/Blogs/BlogAdd";
+import VlogAdd from "./ContentManagement/Vlogs/VlogAdd";
+import FaqAdd from "./ContentManagement/Faqs/FaqAdd";
 
 export default function App() {
   return (
@@ -36,6 +43,21 @@ export default function App() {
           <Route path="/user-management/add-user" element={<AddUser />} />
           <Route path="/user-management" element={<UserManagement />} />
           <Route path="/user-management/view-user" element={<ViewUser />} />
+
+          
+<Route path="/content-management" element={<ContentManagement />} />
+
+{/* BLOGS */}
+<Route path="/content-management/blogs/add" element={<BlogAdd />} />
+<Route path="/content-management/blogs/view" element={<BlogView />} />
+
+{/* VLOGS */}
+<Route path="/content-management/vlogs/add" element={<VlogAdd />} />
+<Route path="/content-management/vlogs/view" element={<VlogView />} />
+
+{/* FAQs */}
+<Route path="/content-management/faqs/add" element={<FaqAdd />} />
+<Route path="/content-management/faqs/view" element={<FaqView />} />
 
           <Route path="/property-management" element={<PropertyManagement />} />
           <Route
@@ -55,7 +77,7 @@ export default function App() {
           <Route path="/monetization" element={<MonetizationManagement />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route
-            path="/notification-and-communication"
+            path="/announcements"
             element={<NotificationCommunication />}
           />
           <Route path="/underdevelopment" element={<UnderDevelopment />} />

@@ -1,5 +1,5 @@
 .body-bg {
-  background-color: #e8f5ff5c;
+  background-color: #a990680a;
 }
 
 .cursor-pointer {
@@ -7,10 +7,10 @@
 }
 
 .form-control {
-    background: #aa926b10 !important;
-    border: 2px solid #a99068 !important;
-    border-radius: 8px !important; 
-    padding: 8px 12px !important;
+  background: #aa926b10 !important;
+  border: 2px solid #a99068 !important;
+  border-radius: 8px !important; 
+  padding: 8px 12px !important;
 }
 
 .form-control:focus {
